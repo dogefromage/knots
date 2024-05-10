@@ -1,0 +1,147 @@
+:root {
+    // font-family: "Comic Sans MS", "Comic Sans";
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    padding: 10mm;
+    gap: 10mm;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin stamps {
+    --u: 0.7mm;
+    --c1: #fbf9fe;
+    --c2: #d3c200;
+    --c3: #725a00;
+    --gp: 50%/ calc(var(--u) * 16.9) calc(var(--u) * 12.8);
+    background:
+        conic-gradient(from 122deg at 50% 85.15%, var(--c2) 0 58deg, var(--c3) 0 116deg, #fff0 0 100%) var(--gp),
+        conic-gradient(from 122deg at 50% 72.5%, var(--c1) 0 116deg, #fff0 0 100%) var(--gp),
+        conic-gradient(from 58deg at 82.85% 50%, var(--c3) 0 64deg, #fff0 0 100%) var(--gp),
+        conic-gradient(from 58deg at 66.87% 50%, var(--c1) 0 64deg, var(--c2) 0 130deg, #fff0 0 100%) var(--gp),
+        conic-gradient(from 238deg at 17.15% 50%, var(--c2) 0 64deg, #fff0 0 100%) var(--gp),
+        conic-gradient(from 172deg at 33.13% 50%, var(--c3) 0 66deg, var(--c1) 0 130deg, #fff0 0 100%) var(--gp),
+        linear-gradient(98deg, var(--c3) 0 15%, #fff0 calc(15% + 1px) 100%) var(--gp),
+        linear-gradient(-98deg, var(--c2) 0 15%, #fff0 calc(15% + 1px) 100%) var(--gp),
+        conic-gradient(from -58deg at 50.25% 14.85%, var(--c3) 0 58deg, var(--c2) 0 116deg, #fff0 0 100%) var(--gp),
+        conic-gradient(from -58deg at 50% 28.125%, var(--c1) 0 116deg, #fff0 0 100%) var(--gp),
+        linear-gradient(90deg, var(--c2) 0 50%, var(--c3) 0 100%) var(--gp);
+}
+
+.card {
+    width: 2.5in;
+    height: 3.5in;
+    outline: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 0;
+
+    background-color: #000000;
+
+    $rad_o: 3mm;
+    $rad_i: 2mm;
+    $padd_o: 2mm;
+
+    border-radius: $rad_o;
+    padding: $padd_o;
+
+    .background {
+        border-radius: $rad_i;
+        width: 100%;
+        height: 100%;
+        // background-color: rgb(255, 168, 252);
+        background: rgb(64,0,73);
+        background: linear-gradient(0deg, rgba(64,0,73,1) 0%, rgba(83,58,139,1) 35%, rgba(0,255,225,1) 100%); 
+
+        // @include stamp   s;
+        // opacity: 0.5;
+    }
+
+    .title {
+        position: absolute;
+        display: flex;
+        align-items: baseline;
+        gap: 1ch;
+        // outline: 1px solid red;
+
+        background-color: black;
+
+        padding-right: 2mm;
+        padding-bottom: 1mm;
+        border-radius: 0 0 $rad_o 0;
+
+        .pre {
+            font-style: italic;
+            font-size: 4mm;
+            color: white;
+        }
+        .name {
+            font-weight: bold;
+            font-size: 6mm;
+            color: white;
+        }
+    }
+
+    .thumb {
+        position: absolute;
+        top: 12mm;
+        height: 35mm;
+        width: 100%;
+        object-fit: contain;
+
+        filter: 
+            invert(100%)
+            drop-shadow(2mm 2mm 5mm black)
+        ;
+        // display: none;
+
+        &.thumb-back {
+            filter:
+                blur(0.5mm)
+            ;
+            display: block;
+        }
+    }
+
+    .stats {
+        position: absolute;
+        // top: 50mm;
+        bottom: 2mm;
+        left: 3mm;
+        right: 3mm;
+        border-radius: 1mm 3mm 1mm 3mm;
+        border: 1mm ridge rgb(175, 226, 243);
+        padding: 0.5mm;
+        
+        box-shadow: inset 1mm 1mm 5mm #00000061;
+        background-color: rgb(159, 226, 231);
+
+        .stat {
+
+            .stat-name {
+                margin: 0;
+                font-size: 3mm;
+                font-style: italic;
+                margin-top: 0.25mm;
+                // text-decoration: underline;
+            }
+
+            .stat-tex {
+                .katex {
+                    font-size: 3mm;
+                }
+            }
+        }
+    }
+}
